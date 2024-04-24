@@ -13,7 +13,7 @@ class _CartState extends State<Cart> {
     return  Scaffold(
       appBar: AppBar(
         title: const Text('Cart'),
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.teal,
       ),
     );
   }

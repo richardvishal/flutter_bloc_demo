@@ -13,7 +13,7 @@ class _WishlistState extends State<Wishlist> {
     return  Scaffold(
       appBar: AppBar(
         title: const Text('Wishlist'),
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.teal,
       ),
     );
   }
