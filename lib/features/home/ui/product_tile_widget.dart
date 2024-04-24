@@ -54,7 +54,9 @@ class ProductTileWidget extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       homeBloc.add(
-                        HomeProductWishlistButtonClickedEvent(),
+                        HomeProductWishlistButtonClickedEvent(
+                          clickedProduct: productDataModel,
+                        ),
                       );
                     },
                     icon: const Icon(Icons.favorite_border),
@@ -62,7 +64,9 @@ class ProductTileWidget extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       homeBloc.add(
-                        HomeProductCartButtonClickedEvent(),
+                        HomeProductCartButtonClickedEvent(
+                          clickedProduct: productDataModel,
+                        ),
                       );
                     },
                     icon: const Icon(Icons.shopping_bag_outlined),
