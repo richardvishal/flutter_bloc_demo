@@ -25,8 +25,8 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return BlocConsumer<HomeBloc, HomeState>(
       bloc: homeBloc,
-      listenWhen: (previous, current) => current.runtimeType is HomeState,
-      buildWhen: (previous, current) => current.runtimeType is! HomeState,
+      listenWhen: (previous, current) => current is HomeActionState,
+      buildWhen: (previous, current) => current is! HomeActionState,
       listener: (BuildContext context, Object? state) {
         if (state is HomeNavigateToWishlistActionState) {
           Navigator.push(
@@ -42,6 +42,10 @@ class _HomeState extends State<Home> {
               builder: (context) => const Cart(),
             ),
           );
+        } else if(state is HomeProductItemWishlistedActionState){
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Item Wishlisted'),),);
+        }else if(state is HomeProductItemCartedActionState){
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Item Added to cart'),),);
         }
       },
       builder: (context, state) {
