@@ -86,8 +86,10 @@ class _HomeState extends State<Home> {
                 body: ListView.builder(
                   itemCount: successState.products.length,
                   itemBuilder: (context, index) => ProductTileWidget(
-                      productDataModel: successState.products[index]),
-                ));
+                    productDataModel: successState.products[index],
+                    homeBloc: homeBloc,
+                  ),
+                 ));
           case const (HomeErrorState):
             return const Scaffold(
               body: Center(
