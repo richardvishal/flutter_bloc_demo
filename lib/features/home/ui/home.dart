@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_demo/features/cart/ui/cart.dart';
 import 'package:flutter_bloc_demo/features/home/bloc/home_bloc.dart';
+import 'package:flutter_bloc_demo/features/wishlist/ui/wishlist.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -15,9 +17,25 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return BlocConsumer<HomeBloc, HomeState>(
       bloc: homeBloc,
-      // listenWhen: (previous, current) {},
-      // buildWhen: (previous, current) {},
-      listener: (BuildContext context, Object? state) {},
+      listenWhen: (previous, current) => current is HomeState,
+      buildWhen: (previous, current) => current is! HomeState,
+      listener: (BuildContext context, Object? state) {
+        if (state is HomeNavigateToWishlistActionState) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const Wishlist(),
+            ),
+          );
+        } else if (state is HomeNavigateToCartActionState) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const Cart(),
+            ),
+          );
+        }
+      },
       builder: (BuildContext context, state) {
         return Scaffold(
           appBar: AppBar(
@@ -25,16 +43,24 @@ class _HomeState extends State<Home> {
               'Richie Grocery App',
               style: TextStyle(color: Colors.white),
             ),
-            backgroundColor: Colors.blueAccent,
-            centerTitle: true,
+            backgroundColor: Colors.teal,
+            // centerTitle: true,
             actions: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  homeBloc.add(
+                    HomeWishlistButtonNavigateEvent(),
+                  );
+                },
                 icon: const Icon(Icons.favorite_border),
                 color: Colors.white,
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  homeBloc.add(
+                    HomeCartButtonNavigateEvent(),
+                  );
+                },
                 icon: const Icon(Icons.shopping_bag_outlined),
                 color: Colors.white,
               ),
