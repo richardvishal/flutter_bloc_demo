@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter_bloc_demo/data/groceryList.dart';
+import 'package:flutter_bloc_demo/data/grocery_list.dart';
 import 'package:flutter_bloc_demo/features/home/models/product_data_model.dart';
 
 part 'home_event.dart';
