@@ -52,13 +52,15 @@ class WishlistTileWidget extends StatelessWidget {
               Row(
                 children: [
                   IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.favorite_border),
+                    onPressed: () {
+                      wishlistBloc.add(WishlistRemoveFromWishlistEvent(wishlistItem: productDataModel));
+                    },
+                    icon: const Icon(Icons.favorite, color: Colors.redAccent,),
                   ),
                   IconButton(
                     onPressed: () {
                     },
-                    icon: const Icon(Icons.shopping_bag),
+                    icon: const Icon(Icons.shopping_bag_outlined),
                   ),
                 ],
               )
